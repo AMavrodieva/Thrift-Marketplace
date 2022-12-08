@@ -1,0 +1,82 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <section id="home-page">
+        <h1>Profile Details</h1>
+        <section id="profile-details">
+            <section class="info-request-section">
+                <div class="info-section">
+                    <h4>Received requests:</h4>
+              <!--TODO: For every send request  -->
+                            <div class="query">
+                               <!-- If have any request -->
+                                    <section class="request-client">
+                                        <p> Product:
+                                            <a class="edit-btn"
+                                               href="#"> Product details</a>
+                                        </p>
+                                        <ul>
+                                            <li>From email: </li>
+                                            <li>Request: </li>
+                                        </ul>
+                                    </section>
+
+                            </div>
+                </div>
+            </section>
+            <section>
+                <section class="info-profile">
+                    <div class="profile-header">
+                        {% if object.profile_picture %}
+                            <img class="profile-img" src="{{ object.profile_picture.url }}" alt='profile-image'/>
+                        {% else %}
+                            <img class="profile-img" src="{% static 'images/person.png' %}" alt='profile-image'/>
+                        {% endif %}
+                        <p class="description">Username: {{ object.username }}</p>
+                        <p class="description">Email: {{ object.email }}</p>
+                        {% if object.first_name and object.last_name %}
+                            <p class="description">Name: {{ object.get_full_name }}</p>
+                        {% endif %}
+                        {% if is_owner %}
+                            <br><br>
+                            <div class="buttons">
+                                <a href="{% url 'edit user' pk=object.pk %}" class="edit-button">Edit</a>
+                                <a href="{% url 'delete user' pk=object.pk %}" class="delete-button">Delete</a>
+                            </div>
+                        {% endif %}
+                        <br><br>
+                        <label><a class="edit-btn" href="javascript:history.back()">Go Back</a></label>
+                    </div>
+                </section>
+            <section class="info-request-section">
+            <div class="info-section">
+                    <h4>Send requests:</h4>
+                <!--TODO: For every send request  -->
+                      <!-- If any -->
+                            <div class="query">
+                                    <section class="request-client">
+                                        <p> Product:
+                                            <a class="edit-btn"
+                                               href="#"> Product details</a>
+                                        </p>
+                                        <ul>
+                                            <li>Your email: </li>
+                                            <li>Request: </li>
+                                        </ul>
+                                    </section>
+
+                            </div>
+
+            </div>
+            </section>
+            </section>
+        </section>
+
+
+    </section>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Monoton&display=swap');
+
+#register-page,
+#create-page,
+#edit-page,
+#delete-page,
+#add-photos,
+#add-product-page{
+    position: relative;
+    width: 500px;
+    height: auto;
+    /*background: rgba(192, 55, 55, 0.1);*/
+    text-align: center;
+    padding: 10px;
+    border: 3px solid #E2E8EA;
+    border-radius: 70px 0 70px;
+    background: rgba(6, 12, 33, 0.87);
+}
+
+
+#add-product-page, #delete-page{
+    margin: 0;
+}
+
+
+#add-photos, #edit-page{
+    margin: 10px;
+}
+.container {
+    padding: 10px;
+    margin: 5px;
+    /*box-sizing: border-box;*/
+}
+
+
+.container > h1 {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 28px;
+    text-align: center;
+    color: white;
+    letter-spacing: 2px;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 14px;
+}
+
+label,
+input,
+select,
+textarea{
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+label {
+    margin-bottom: 8px;
+    font-size: 18px;
+    color: white;
+    margin-top: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+label:nth-of-type(2) {
+    margin-top: 10px;
+}
+
+label[for="female"] {
+    margin-top: 10px;
+}
+
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="url"],
+input[type="image"]{
+    background: #ecf0f3;
+    padding: 20px 20px 20px 20px;
+    height: 50px;
+    margin-top: 10px;
+    font-size: 17px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #c0c2c5, inset -6px -6px 6px white;
+}
+
+select {
+    background: #ecf0f3;
+    padding: 10px 20px 10px 20px;
+    height: 50px;
+    margin-top: 10px;
+    font-size: 17px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #c0c2c5, inset -6px -6px 6px white;
+}
+
+label[for="terms"] > input,
+label[for="terms"] > select{
+    display: inline;
+}
+
+
+
+.btn, .register-button{
+    color: #fff;
+    border: none;
+    margin-top: 30px;
+    font-weight: 600;
+    height: 50px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: 0.5s;
+    transition-property: box-shadow;
+}
+
+.register-button{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+.btn, .register-button{
+    background: #3387C7;
+    box-shadow: 0 0 25px white;
+    width: 50%;
+}
+
+.btn:hover, .register-button:hover{
+    box-shadow: 0 0 100px white;
+}
+
+.container {
+    text-align: left;
+    margin-top: 0;
+}
+
+.field > span {
+    position: absolute;
+    font-size: 18px;
+    bottom: 17px;
+    right: 8px;
+    text-decoration: none;
+    color: black;
+    background: rgb(235, 157, 142);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+
+textarea, .comment, #photo{
+    width: 100%;
+    min-width: 10px;
+    min-height: 10px;
+    border: 2px solid #86a480;
+    border-radius: 0.7em;
+    font-size: 17px;
+    border-bottom-color: #ecf0f3;
+    background-color: #ecf0f3;
+    border-right-color: #ecf0f3;
+    box-shadow: inset 6px 6px 6px #c0c2c5, inset -6px -6px 6px white;
+    color: black;
+}
+
+.errorlist{
+    color: red
+}
+
+.search{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    padding: 20px 0;
+}
+.search form{
+    display: flex;
+    width: 100%;
+    padding: 0 20px;
+    justify-items: center;
+}
+
+.search h2{
+    display: inline-block;
+    color: white;
+    justify-content: center;
+    padding: 0;
+    height: fit-content;
+    /*margin-top: 50px;*/
+}
+
+.searchbar button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+

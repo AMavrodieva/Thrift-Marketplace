@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <section id="home-page">
+        <h1>Product Details</h1>
+    <!--TODO: When product is available  -->
+        <section id="product-details">
+            <section class="info-product">
+                <div class="product-header">
+                    <!--If product has picture-->
+                        <img class="product-img" src="{{ product.product_picture.url }}" alt='product image'/>
+                    <!--else -->
+                        <img class="product-img" src="{% static 'images/no_posts.png' %}" alt='product image'/>
+
+                <br>
+                    <p> Product: <span class="description"></span></p>
+                    <p>Category: <span class="description"></span></p>
+                    <p>Price:<span class="description">  lv</span></p>
+                </div>
+            <!-- if product has description -->
+
+                <div class="product-header"><p>Description:<br><span class="description"> </span></p></div>
+                <!-- if is owner -->
+
+                    <div class="buttons">
+                        <a href="#" class="edit-button">Edit</a>
+                        <a href="#" class="delete-button">Delete</a>
+                    </div>
+
+                <br>
+            <!--TODO: When comment is available  -->
+                <div class="comments">
+                    <div class="add-comments">
+                        <form class="comment-form" >
+
+                            <div class="text-comments">
+                            <!-- For every comment -->
+
+                                        <p class="user-name">Comment user</p>
+                                        <label class="comment">Comment text</label>
+                                        <p>Date of publication</p>
+                            </div>
+                            <button type="submit" class="post-button">Post</button>
+
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <!--TODO: When rating is available  -->
+            <section class="additional-info">
+                <section class="rating-section">
+                    <div class="info-section">
+                        <label class="center">Rating: </label>
+                        <form class="rating-form" >
+
+                            <button type="submit" class="post-button">Post</button>
+
+                        </form>
+                    </div>
+                </section>
+                <!--TODO: When request is available  -->
+                <section class="request-section">
+                    <div class="info-section">
+                        <label class="center">Send Request:</label>
+                        <form class="request-form">
+                            <button type="submit" class="post-button">Post</button>
+                        </form>
+                    </div>
+                </section>
+            </section>
+        </section>
+    <!--TODO: When photo is available  -->
+        <section id="photo-details">
+            <section class="photo-section">
+                <!-- for every photo if photo has photo-->
+
+                        <img class="image-product" src="#" alt="product_photos">
+
+
+            </section>
+        </section>
+    </section>
+
+{% endblock %}
+

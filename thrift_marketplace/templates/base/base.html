@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
+    <title>Thrift Marketplace</title>
+</head>
+
+<body>
+<div id="box">
+    <header>
+        <h1><a class="index-navigation" href="{% url 'index' %}">
+            <span>THRIFT </span>MARKET<span>PLACE</span></a></h1>
+        <nav>
+            <a href="#">Add product</a>
+            {% if not request.user.is_authenticated %}
+                <a href="{% url 'login user' %}">Sign in</a>
+            {% else %}
+                <a href="#">My Products</a>
+                <a href="{% url 'details user' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'logout user' %}">Sign out</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        &copy; Aneliya's final web project 2022. All rights reserved.
+    </footer>
+
+</div>
+</body>
+</html>
+

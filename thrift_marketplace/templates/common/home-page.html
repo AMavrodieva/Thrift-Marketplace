@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <section id="home-page">
+    <!--TODO: When product is available  -->
+            <p class="no-articles">No products yet</p>
+
+            <section class="search">
+                <form class="searchbar" >
+                   search by product
+                    <button>
+                        <img src="{% static 'images/search.png' %}" height="18" alt="img2">
+                    </button>
+
+                </form>
+                <form class="searchbar" >
+                    search by category
+                    <button>
+                        <img src="{% static 'images/search.png' %}" height="18" alt="img2">
+                    </button>
+
+                </form>
+            </section>
+    <!--TODO: When product is available  -->
+            <section id="pagination">
+{#                <section class="step-links">#}
+{#                    {% if page_obj.has_previous %}#}
+{#                        <a href="?page=1">&laquo; first</a>#}
+{#                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>#}
+{#                    {% endif %}#}
+{#                    <section class="current">#}
+{#                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
+{#                    </section>#}
+{##}
+{#                    {% if page_obj.has_next %}#}
+{#                        <a href="?page={{ page_obj.next_page_number }}">next</a>#}
+{#                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>#}
+{#                    {% endif %}#}
+{#                </section>#}
+            </section>
+            <section id="catalogue">
+                <!-- for every product-->
+                    <section class="product-card">
+                        <div class="image-wrap">
+                            <!-- if product has photo -->
+                                <img src="{{ product.product_picture.url }}" alt="product image">
+
+                                <img src="{% static 'images/no_posts.png' %}" alt="product image">
+                        </div>
+                        <h3> Category</h3>
+                        <h1> Name</h1>
+                        <h4> Date of publication</h4>
+                        <div class="details-buttons">
+                            <a href="#" class="details-btn">Details</a>
+                            <br>
+                        </div>
+                        <!--TODO: When comment is available  -->
+                        <div class="add-comments">
+                            <form class="comment-form" >
+
+                                <button type="submit" class="post-button">Post</button>
+
+                            </form>
+                        </div>
+                    </section>
+
+            </section>
+
+
+    </section>
+{% endblock %}
+
