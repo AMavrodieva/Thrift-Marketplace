@@ -2,6 +2,8 @@ from django.urls import path, include
 from thrift_marketplace.accounts.views import AppSignInUserView, AppSignUpUserView, AppSignOutUserView, \
     AppEditUserView, AppDetailsUserView, HomePageView, delete_user
 
+from thrift_marketplace.accounts.signals import send_greeting_email
+
 urlpatterns = (
     path('login/', AppSignInUserView.as_view(), name='login user'),
     path('register/', AppSignUpUserView.as_view(), name='register user'),
@@ -13,3 +15,4 @@ urlpatterns = (
         path('delete/', delete_user, name='delete user'),
     ])),
 )
+
