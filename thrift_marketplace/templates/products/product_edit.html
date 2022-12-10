@@ -2,27 +2,26 @@
 {% block content %}
     <section id="edit-page-all">
         <section id="edit-page" class="auth">
-            <!--TODO: When product is available  -->
-            <form id="edit" >
+            <<form id="edit" method="post" action="{% url 'edit product' pk=product.pk %}" enctype="multipart/form-data">
                 <section class="container">
                     <h1>Edit Product</h1>
+                    {{ form }}
                     <input class="btn submit" type="submit" value="Edit Product">
                     <br><br>
                     <label><a href="javascript:history.back()">Go Back</a></label>
-
+                    {% csrf_token %}
                 </section>
             </form>
         </section>
-        <!--TODO: When photo is available  -->
         <section id="add-photos">
-            <form class="photo" >
+            <form class="photo" method="post" action="{% url 'product photo' pk=product.pk %}" enctype="multipart/form-data">
                 <section class="container">
                     <h1> Add Photo</h1>
-
+                    {{ photo_form }}
                     <input class="btn submit" type="submit" value="Add Photo">
                     <br><br>
                     <label><a href="javascript:history.back()">Go Back</a></label>
-
+                    {% csrf_token %}
                 </section>
             </form>
         </section>

@@ -2,13 +2,12 @@
 {% block content %}
 
     <section id="add-product-page" class="auth">
-    <!--TODO: when product is available  -->
-        <form id="create" >
+        <form id="create" method="post" action="{% url 'add product'%}" enctype="multipart/form-data">
            <div class="container">
             <h1>Add Product</h1>
-
+            {{ form }}
                <input class="btn submit" type="submit" value="Add Product">
-
+            {% csrf_token %}
          </div>
         </form>
     </section>

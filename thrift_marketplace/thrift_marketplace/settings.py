@@ -1,4 +1,5 @@
 import os
+import cloudinary
 from pathlib import Path
 
 from django.urls import reverse_lazy
@@ -11,7 +12,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
 
 
 INSTALLED_APPS = [
@@ -21,6 +22,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    'cloudinary',
 
     "thrift_marketplace.accounts",
     "thrift_marketplace.products",
@@ -59,14 +62,14 @@ WSGI_APPLICATION = "thrift_marketplace.wsgi.application"
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DB_ENGINE'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-    }
+   'default': {
+       'ENGINE': os.environ.get('DB_ENGINE'),
+       'NAME': os.environ.get('DB_NAME'),
+       'USER': os.environ.get('DB_USER'),
+       'PASSWORD': os.environ.get('DB_PASSWORD'),
+       'HOST': os.environ.get('DB_HOST'),
+       'PORT': os.environ.get('DB_PORT'),
+   }
 }
 
 
@@ -101,6 +104,14 @@ STATICFILES_DIRS = (BASE_DIR / 'staticfiles',)
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUD_NAME'),
+    api_key=os.environ.get('API_KEY'),
+    api_secret=os.environ.get('API_SECRET'),
+    secure=True
+)
+
+# CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

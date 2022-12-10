@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_view, login, get_user_model
 from django.urls import reverse_lazy
@@ -38,6 +39,7 @@ class AppSignOutUserView(auth_view.LogoutView):
 class HomePageView(LoginRequiredMixin, views.DetailView):
     template_name = 'accounts/profile-home-page.html'
     model = UserModel
+    products_paginate_by = 6
 
     def dispatch(self, request, *args, **kwargs):
         super().dispatch(request, *args, **kwargs)
@@ -45,9 +47,23 @@ class HomePageView(LoginRequiredMixin, views.DetailView):
             return redirect('index')
         return super().dispatch(request, *args, **kwargs)
 
+    def get_products_page(self):
+        return self.request.GET.get('page', 1)
+
+    def get_paginated_products(self):
+        page_number = self.get_products_page()
+
+        products = self.object.product_set.order_by('date_of_publication')
+
+        paginator = Paginator(products, self.products_paginate_by)
+        page_obj = paginator.get_page(page_number)
+        return page_obj
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_owner'] = self.request.user == self.object
+        context['products'] = self.object.product_set
+        context['page_obj'] = self.get_paginated_products()
 
         return context
 

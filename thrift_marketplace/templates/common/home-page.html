@@ -3,56 +3,56 @@
 {% block content %}
 
     <section id="home-page">
-    <!--TODO: When product is available  -->
+    {% if not products %}
             <p class="no-articles">No products yet</p>
-
+    {% else %}
             <section class="search">
-                <form class="searchbar" >
-                   search by product
+                <form class="searchbar" method="get" action="{% url 'index' %}">
+                    {{ search_form }}
                     <button>
                         <img src="{% static 'images/search.png' %}" height="18" alt="img2">
                     </button>
-
+                    {% csrf_token %}
                 </form>
-                <form class="searchbar" >
-                    search by category
+                <form class="searchbar" method="get" action="{% url 'index' %}">
+                    {{ search_category_form }}
                     <button>
                         <img src="{% static 'images/search.png' %}" height="18" alt="img2">
                     </button>
-
+                    {% csrf_token %}
                 </form>
             </section>
-    <!--TODO: When product is available  -->
             <section id="pagination">
-{#                <section class="step-links">#}
-{#                    {% if page_obj.has_previous %}#}
-{#                        <a href="?page=1">&laquo; first</a>#}
-{#                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>#}
-{#                    {% endif %}#}
-{#                    <section class="current">#}
-{#                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
-{#                    </section>#}
-{##}
-{#                    {% if page_obj.has_next %}#}
-{#                        <a href="?page={{ page_obj.next_page_number }}">next</a>#}
-{#                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>#}
-{#                    {% endif %}#}
-{#                </section>#}
+                <section class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <section class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </section>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </section>
             </section>
             <section id="catalogue">
-                <!-- for every product-->
+               {% for product in page_obj %}
                     <section class="product-card">
                         <div class="image-wrap">
-                            <!-- if product has photo -->
+                            {% if product.product_picture %}
                                 <img src="{{ product.product_picture.url }}" alt="product image">
-
+                            {% else %}
                                 <img src="{% static 'images/no_posts.png' %}" alt="product image">
+                            {% endif %}
                         </div>
-                        <h3> Category</h3>
-                        <h1> Name</h1>
-                        <h4> Date of publication</h4>
+                        <h3>{{ product.category }}</h3>
+                        <h1>{{ product.product_name }}</h1>
+                        <h4>{{ product.date_of_publication }}</h4>
                         <div class="details-buttons">
-                            <a href="#" class="details-btn">Details</a>
+                            <a href="{% url 'details product' pk=product.pk %}" class="details-btn">Details</a>
                             <br>
                         </div>
                         <!--TODO: When comment is available  -->
@@ -64,10 +64,10 @@
                             </form>
                         </div>
                     </section>
-
+                {% endfor %}
             </section>
 
-
+        {% endif %}
     </section>
 {% endblock %}
 

@@ -1,6 +1,7 @@
 from django.contrib.auth import forms as auth_forms, get_user_model
 from django import forms
 
+from thrift_marketplace.products.models import Product, Photos
 
 UserModel = get_user_model()
 
@@ -49,7 +50,8 @@ class AppDeleteUserForm(forms.ModelForm):
 
     def save(self, commit=True):
         if commit:
-
+            Product.objects.filter(user_id=self.instance.id).delete()
+            Photos.objects.filter(user_id=self.instance.id).delete()
             self.instance.delete()
         return self.instance
 

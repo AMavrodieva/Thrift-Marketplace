@@ -11,15 +11,15 @@ class AppUserAdmin(admin.ModelAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff',)
     ordering = ('email',)
     search_fields = ("first_name__startswith",)
-    add_form = AppCreateUserForm
+    form = AppCreateUserForm
 
     fieldsets = (
         (
             None,
-            {'fields': ('username', 'email', 'password'), }),
+            {'fields': ('username', 'email', 'password1', 'password2'), },),
         (
             'Personal info',
-            {'fields': ('first_name', 'last_name'), },),
+            {'fields': ('first_name', 'last_name', 'phone_number', 'profile_picture'), },),
         (
             'Permissions',
             {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions',), },),

@@ -2,55 +2,53 @@
 {% load static %}
 {% block content %}
     <section id="home-page">
-        <!--TODO: When available products  -->
-        <!-- If no products -->
+        {% if not request.user.product_set.all %}
+            <p class="no-articles">No products yet</p>
+        {% else %}
+            <section id="pagination">
+                <section class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <section class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </section>
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </section>
+            </section>
+            <section id="catalogue">
+                {% for product in page_obj %}
+                <section class="product-card">
+                    <div class="image-wrap">
+                        {% if product.product_picture %}
+                            <img src="{{ product.product_picture.url }}" alt="product image">
+                        {% else %}
+                            <img src="{% static 'images/no_posts.png' %}" alt="product image">
+                        {% endif %}
+                    </div>
+                    <h3>{{ product.category }}</h3>
+                    <h1>{{ product.product_name }}</h1>
+                    <h4>{{ product.date_of_publication }}</h4>
+                    <div class="details-buttons">
+                        <a href="{% url 'details product' pk=product.pk %}" class="details-btn">Details</a>
+                        <br>
+                    </div>
+                    <!--TODO: when comment is available  -->
+                    <div class="add-comments">
+                        <form class="comment-form" method="post"
+                              action="#">
+                            <button type="submit" class="post-button">Post</button>
 
-        <p class="no-articles">No products yet</p>
-        <!-- Else -->
-        <section id="pagination">
-                        <section class="step-links">
-            {#                {% if page_obj.has_previous %}#}
-            {#                    <a href="?page=1">&laquo; first</a>#}
-            {#                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>#}
-            {#                {% endif %}#}
-            {#                <section class="current">#}
-            {#                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
-            {#                </section>#}
-            {#                {% if page_obj.has_next %}#}
-            {#                    <a href="?page={{ page_obj.next_page_number }}">next</a>#}
-            {#                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>#}
-            {#                {% endif %}#}
-        </section>
-    </section>
-    <section id="catalogue">
-        <!-- for every product in page -->
-        <section class="product-card">
-            <div class="image-wrap">
+                        </form>
+                    </div>
+                </section>
+                {% endfor %}
+            </section>
 
-                <img src="#" alt="product image">
-
-                <img src="{% static 'images/no_posts.png' %}" alt="product image">
-
-            </div>
-            <h3> Product Category</h3>
-            <h1> Product Name</h1>
-            <h4> Date of publication</h4>
-            <div class="details-buttons">
-                <a href="#" class="details-btn">Details</a>
-                <br>
-            </div>
-            <!--TODO: when comment is available  -->
-            <div class="add-comments">
-                <form class="comment-form" method="post"
-                      action="#">
-                    <button type="submit" class="post-button">Post</button>
-
-                </form>
-            </div>
-        </section>
-
-    </section>
-
-
+        {% endif %}
     </section>
 {% endblock %}

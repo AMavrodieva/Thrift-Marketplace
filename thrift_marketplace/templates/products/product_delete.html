@@ -2,18 +2,16 @@
 {% extends 'base/base.html' %}
 {% block content %}
 
-    <!--TODO: When product is available  -->
     <section id="delete-page" class="auth">
-        <form id="delete" >
+        <form id="delete" method="post" action="{% url 'delete product' pk=product.pk %}" enctype="multipart/form-data">
             <div class="container">
-
                 <h1>Delete Product</h1>
-
+               {{ form }}
                 <input class="btn submit" type="submit" value="Delete Product">
                 <br>
                 <br>
                 <label><a href="javascript:history.back()">Go Back</a></label>
-
+                {% csrf_token %}
             </div>
         </form>
     </section>
