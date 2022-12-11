@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 
 from thrift_marketplace.accounts.forms import AppCreateUserForm, AppLoginForm, AppChangeUserForm, AppDeleteUserForm
+from thrift_marketplace.common.forms import ProductCommentForm
 
 UserModel = get_user_model()
 
@@ -64,6 +65,7 @@ class HomePageView(LoginRequiredMixin, views.DetailView):
         context['is_owner'] = self.request.user == self.object
         context['products'] = self.object.product_set
         context['page_obj'] = self.get_paginated_products()
+        context['comment_form'] = ProductCommentForm
 
         return context
 
@@ -77,6 +79,14 @@ class AppDetailsUserView(LoginRequiredMixin, views.DetailView):
         if not self.object.pk == request.user.pk:
             return redirect('index')
         return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        products = self.object.product_set.all
+        context = super().get_context_data(**kwargs)
+        context['products'] = products
+        context['is_owner'] = self.request.user == self.object
+        context['send_queries'] = self.object.productrequest_set.all
+        return context
 
 
 class AppEditUserView(LoginRequiredMixin, views.UpdateView):

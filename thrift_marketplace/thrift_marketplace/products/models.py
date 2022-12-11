@@ -105,6 +105,9 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
 
+    class Meta:
+        ordering = ('-date_of_publication', )
+
 
 class Photos(models.Model):
 

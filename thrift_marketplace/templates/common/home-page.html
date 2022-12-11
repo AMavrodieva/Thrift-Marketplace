@@ -3,9 +3,9 @@
 {% block content %}
 
     <section id="home-page">
-    {% if not products %}
+        {% if not products %}
             <p class="no-articles">No products yet</p>
-    {% else %}
+        {% else %}
             <section class="search">
                 <form class="searchbar" method="get" action="{% url 'index' %}">
                     {{ search_form }}
@@ -39,7 +39,7 @@
                 </section>
             </section>
             <section id="catalogue">
-               {% for product in page_obj %}
+                {% for product in page_obj %}
                     <section class="product-card">
                         <div class="image-wrap">
                             {% if product.product_picture %}
@@ -55,12 +55,12 @@
                             <a href="{% url 'details product' pk=product.pk %}" class="details-btn">Details</a>
                             <br>
                         </div>
-                        <!--TODO: When comment is available  -->
                         <div class="add-comments">
-                            <form class="comment-form" >
-
+                            <form class="comment-form" method="post"
+                                  action="{% url 'product comment' product_id=product.pk %}">
+                                {{ comment_form }}
                                 <button type="submit" class="post-button">Post</button>
-
+                                {% csrf_token %}
                             </form>
                         </div>
                     </section>

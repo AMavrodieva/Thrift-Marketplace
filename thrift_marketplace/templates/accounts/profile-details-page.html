@@ -8,21 +8,25 @@
             <section class="info-request-section">
                 <div class="info-section">
                     <h4>Received requests:</h4>
-              <!--TODO: For every send request  -->
+                {% for product in products %}
+                        {% for query in product.productrequest_set.all %}
                             <div class="query">
-                               <!-- If have any request -->
+                                {% if query %}
                                     <section class="request-client">
-                                        <p> Product:
+                                        <p> Product: {{ query.product.product_name }}
                                             <a class="edit-btn"
-                                               href="#"> Product details</a>
+                                               href="{% url 'details product' pk=query.product.pk %}"> Product
+                                                details</a>
                                         </p>
                                         <ul>
-                                            <li>From email: </li>
-                                            <li>Request: </li>
+                                            <li>From email: {{ query.request_email }}</li>
+                                            <li>Request: {{ query.text }}</li>
                                         </ul>
                                     </section>
-
+                                {% endif %}
                             </div>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </section>
             <section>
@@ -45,29 +49,30 @@
                                 <a href="{% url 'delete user' pk=object.pk %}" class="delete-button">Delete</a>
                             </div>
                         {% endif %}
-                        <br><br>
                         <label><a class="edit-btn" href="javascript:history.back()">Go Back</a></label>
                     </div>
                 </section>
             <section class="info-request-section">
             <div class="info-section">
                     <h4>Send requests:</h4>
-                <!--TODO: For every send request  -->
-                      <!-- If any -->
+               {% for query in send_queries %}
+                        {% if query %}
                             <div class="query">
+                                {% if query %}
                                     <section class="request-client">
-                                        <p> Product:
+                                        <p> Product: {{ query.product.product_name }}
                                             <a class="edit-btn"
-                                               href="#"> Product details</a>
+                                               href="{% url 'details product' pk=query.product.pk %}"> Product details</a>
                                         </p>
                                         <ul>
-                                            <li>Your email: </li>
-                                            <li>Request: </li>
+                                            <li>Your email: {{ query.request_email }}</li>
+                                            <li>Request: {{ query.text }}</li>
                                         </ul>
                                     </section>
-
+                                {% endif %}
                             </div>
-
+                        {% endif %}
+                    {% endfor %}
             </div>
             </section>
             </section>

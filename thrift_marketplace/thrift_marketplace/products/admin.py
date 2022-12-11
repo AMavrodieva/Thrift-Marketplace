@@ -8,13 +8,16 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     ordering = ('pk',)
     list_filter = ('name',)
+    filter = ('name',)
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('category', 'pk', 'product_name', 'price')
+    list_display = ('pk', 'category', 'product_name', 'price')
     list_filter = ('category_id', )
-    ordering = ('category', 'pk')
+    ordering = ('pk', 'category')
+    search_fields = ("product_name__icontains",)
+    filter = ('product_name', 'category')
 
 
 @admin.register(Photos)

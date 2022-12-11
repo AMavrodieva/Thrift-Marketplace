@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 
+from thrift_marketplace.common.forms import ProductCommentForm, ProductRequestForm, ProductRatingForm
 from thrift_marketplace.products.forms import CreateProductForm, EditProductForm, ProductPhotoAddForm, DeleteProductForm
 from thrift_marketplace.products.models import Product
 
@@ -28,11 +29,20 @@ def add_product(request):
 
 def details_product(request, pk):
     product = Product.objects.filter(pk=pk).get()
+    product_rating = product.productrating_set.all()
+    total_rating = len(product_rating)
+    try:
+        avg_rating = sum(int(cr.review_rating) for cr in product_rating) / total_rating
+    except ZeroDivisionError:
+        avg_rating = 0.0
 
     context = {
         'product': product,
         'is_owner': product.user == request.user,
-
+        'comment_form': ProductCommentForm,
+        'request_form': ProductRequestForm,
+        'rating_form': ProductRatingForm,
+        'avg_rating': avg_rating,
     }
     return render(request, 'products/product_details.html', context)
 
@@ -95,3 +105,11 @@ def product_photos(request, pk):
         photo.save()
 
         return redirect('details product', pk=product.pk)
+
+    context = {
+        'form': form,
+        'product': product,
+        'is_owner': product.user == request.user,
+        'photo_form': ProductPhotoAddForm,
+    }
+    return render(request, 'products/product_edit.html', context)

@@ -49,7 +49,7 @@
 }
 
 .info-profile{
-    width: 650px;
+    width: 700px;
     height: 400px;
     margin-bottom: 20px;
 }
@@ -121,6 +121,12 @@
     height: auto;
 }
 
+.profile-header p{
+    width: auto;
+    padding: 0;
+    margin: 15px;
+}
+
 .product-header>h1,
 .profile-header>h1{
     color: #E2E8EA;
@@ -179,6 +185,7 @@
     font-weight: bold;
     font-size: 22px;
     float: right;
+    margin: 10px 0;
 }
 
 .product-img{

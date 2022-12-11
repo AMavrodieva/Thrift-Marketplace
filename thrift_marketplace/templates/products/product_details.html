@@ -21,48 +21,51 @@
                 {% endif %}
                 {% if is_owner %}
                     <div class="detail-product-edit">
-{#                    <div class="buttons">#}
                         <a href="{% url 'edit product' pk=product.pk %}" class="edit-button">Edit</a>
                         <a href="{% url 'delete product' pk=product.pk %}" class="delete-button">Delete</a>
                     </div>
                 {% endif %}
                 <br>
-            <!--TODO: When comment is available  -->
                 <div class="comments">
                     <div class="add-comments">
-                        <form class="comment-form" >
-
+                        <form class="comment-form" method="post"
+                              action="{% url 'product comment' product_id=product.pk %}">
+                            {{ comment_form }}
                             <div class="text-comments">
-                            <!-- For every comment -->
-
-                                        <p class="user-name">Comment user</p>
-                                        <label class="comment">Comment text</label>
-                                        <p>Date of publication</p>
+                                {% for comment in product.productcomment_set.all %}
+                                    {% if comment %}
+                                        <p class="user-name">{{ comment.user }}</p>
+                                        <label class="comment">{{ comment.text }}</label>
+                                        <p>{{ comment.date_and_time_of_publication }}</p>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                             <button type="submit" class="post-button">Post</button>
-
+                            {% csrf_token %}
                         </form>
                     </div>
                 </div>
             </section>
-            <!--TODO: When rating is available  -->
             <section class="additional-info">
                 <section class="rating-section">
                     <div class="info-section">
-                        <label class="center">Rating: </label>
-                        <form class="rating-form" >
-
+                        <label class="center">Rating: {{ avg_rating }}</label>
+                        <form class="rating-form" method="post"
+                              action="{% url 'product rating' product_id=product.pk %}">
+                            {{ rating_form }}
                             <button type="submit" class="post-button">Post</button>
-
+                            {% csrf_token %}
                         </form>
                     </div>
                 </section>
-                <!--TODO: When request is available  -->
                 <section class="request-section">
                     <div class="info-section">
                         <label class="center">Send Request:</label>
-                        <form class="request-form">
+                        <form class="request-form" method="post"
+                              action="{% url 'product request' product_id=product.pk %}">
+                            {{ request_form }}
                             <button type="submit" class="post-button">Post</button>
+                            {% csrf_token %}
                         </form>
                     </div>
                 </section>

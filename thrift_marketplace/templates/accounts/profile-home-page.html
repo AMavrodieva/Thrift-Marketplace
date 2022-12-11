@@ -37,12 +37,12 @@
                         <a href="{% url 'details product' pk=product.pk %}" class="details-btn">Details</a>
                         <br>
                     </div>
-                    <!--TODO: when comment is available  -->
                     <div class="add-comments">
                         <form class="comment-form" method="post"
-                              action="#">
+                              action="{% url 'product comment' product_id=product.pk %}">
+                            {{ comment_form }}
                             <button type="submit" class="post-button">Post</button>
-
+                            {% csrf_token %}
                         </form>
                     </div>
                 </section>

@@ -10,7 +10,9 @@ UserModel = get_user_model()
 class AppUserAdmin(admin.ModelAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff',)
     ordering = ('email',)
-    search_fields = ("first_name__startswith",)
+    search_fields = ("username__startswith",)
+    list_filter = ('is_staff', 'is_superuser')
+    filter = ('username', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff')
     form = AppCreateUserForm
 
     fieldsets = (
