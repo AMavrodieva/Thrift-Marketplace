@@ -32,7 +32,9 @@ class ProductComment(models.Model):
 
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.RESTRICT,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
     )
 
     def __str__(self):
@@ -63,7 +65,9 @@ class ProductRequest(models.Model):
 
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.RESTRICT,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
     )
 
     request_date = models.DateField(
@@ -90,7 +94,9 @@ class ProductRating(models.Model):
     )
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.RESTRICT,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
     )
 
     product = models.ForeignKey(

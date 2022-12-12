@@ -6,7 +6,7 @@ from thrift_marketplace.common.models import ProductComment, ProductRequest, Pro
 @admin.register(ProductComment)
 class ProductCommentAdmin(admin.ModelAdmin):
     pass
-    list_display = ('pk', 'category', 'product', 'text')
+    list_display = ('pk', 'category', 'product', 'text', 'user')
     search_fields = ("product__startswith", )
     ordering = ('pk', )
 
@@ -18,14 +18,14 @@ class ProductCommentAdmin(admin.ModelAdmin):
 
 @admin.register(ProductRequest)
 class ProductRequestAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'text', 'product')
+    list_display = ('pk', 'text', 'product', 'user')
     search_fields = ("text__startswith",)
     filter = ('product',)
 
 
 @admin.register(ProductRating)
 class ProductRatingAdmin(admin.ModelAdmin):
-    list_display = ('review_rating', 'product', 'category', 'pk')
+    list_display = ('review_rating', 'product', 'category', 'pk', 'user')
     search_fields = ("product__startswith",)
     ordering = ('-review_rating', 'pk')
     filter = ('review_rating', 'product', 'category', 'pk')

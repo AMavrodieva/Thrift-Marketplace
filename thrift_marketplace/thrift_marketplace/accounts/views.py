@@ -54,7 +54,7 @@ class HomePageView(LoginRequiredMixin, views.DetailView):
     def get_paginated_products(self):
         page_number = self.get_products_page()
 
-        products = self.object.product_set.order_by('date_of_publication')
+        products = self.object.product_set.order_by('-pk')
 
         paginator = Paginator(products, self.products_paginate_by)
         page_obj = paginator.get_page(page_number)

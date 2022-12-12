@@ -58,18 +58,13 @@
                {% for query in send_queries %}
                         {% if query %}
                             <div class="query">
-                                {% if query %}
                                     <section class="request-client">
-                                        <p> Product: {{ query.product.product_name }}
-                                            <a class="edit-btn"
-                                               href="{% url 'details product' pk=query.product.pk %}"> Product details</a>
-                                        </p>
+                                        <p> Product: {{ query.product.product_name }}</p>
                                         <ul>
                                             <li>Your email: {{ query.request_email }}</li>
                                             <li>Request: {{ query.text }}</li>
                                         </ul>
                                     </section>
-                                {% endif %}
                             </div>
                         {% endif %}
                     {% endfor %}

@@ -30,9 +30,9 @@ class AppLoginForm(auth_forms.AuthenticationForm):
 
 class AppChangeUserForm(forms.ModelForm):
 
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First Name'}, ), )
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last Name'}, ), )
-    phone_number = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your phone'}, ), )
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First Name'}, ), required=False, )
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last Name'}, ), required=False,)
+    phone_number = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your phone'}, ), required=False, )
 
     class Meta:
         model = UserModel
@@ -51,11 +51,13 @@ class AppDeleteUserForm(forms.ModelForm):
 
     def save(self, commit=True):
         if commit:
-            Product.objects.filter(user_id=self.instance.id).delete()
             Photos.objects.filter(user_id=self.instance.id).delete()
-            ProductComment.objects.filter(user_id=self.instance.id).delete()
-            ProductRequest.objects.filter(user_id=self.instance.id).delete()
-            ProductRating.objects.filter(user_id=self.instance.id).delete()
+            products = Product.objects.filter(user_id=self.instance.id)
+            for product in products:
+                product.productcomment_set.all().delete()
+                product.productrequest_set.all().delete()
+                product.productrating_set.all().delete()
+            products.delete()
             self.instance.delete()
         return self.instance
 

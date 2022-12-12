@@ -66,8 +66,8 @@ class Product(models.Model):
         validators=(
             validators.MinLengthValidator(PRODUCT_NAME_MIN_VALUE),
         ),
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
         verbose_name="Product Name",
     )
 

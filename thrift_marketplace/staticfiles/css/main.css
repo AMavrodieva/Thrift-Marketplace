@@ -161,7 +161,8 @@ a {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
     margin-top: 20px;
     padding: 20px;
-    margin-left: 20px;
+    margin-left: 25px;
+    margin-right: 20px;
     background-position: right 35% bottom 45%;
     box-sizing: border-box;
     border-radius: 15px;
@@ -169,10 +170,6 @@ a {
     height: auto;
     background: rgba(6, 12, 33, 0.87);
 }
-    /*!*background: #0c1842;*!*/
-    /*!*background: rgba(13, 34, 58, 0.76);*!*/
-    /*!*background-color: #0D223A;*/
-
 
 
 .image-wrap {

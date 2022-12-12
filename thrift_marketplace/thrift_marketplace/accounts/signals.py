@@ -21,6 +21,7 @@ def send_greeting_email(instance, created, **kwargs):
         send_mail(
             subject=subject,
             message=email_content,
+            html_message=html_message,
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=(instance.email,),
         )

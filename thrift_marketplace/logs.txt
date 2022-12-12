@@ -1,0 +1,5 @@
+INFO 2022-12-11 22:08:51,224 autoreload 10404 9760 Watching for file changes with StatReloader autoreload.py 677 - run_with_reloader
+WARNING 2022-12-11 22:09:51,869 log 10404 2396 Not Found: /static/css/404.css log.py 234 - log_response
+WARNING 2022-12-11 22:10:15,611 log 10404 14972 Not Found: /accounts/profile/4/ log.py 234 - log_response
+WARNING 2022-12-11 22:10:15,723 log 10404 14972 Not Found: /static/css/404.css log.py 234 - log_response
+WARNING 2022-12-11 22:11:30,275 log 10404 14352 Not Found: /static/css/404.css log.py 234 - log_response

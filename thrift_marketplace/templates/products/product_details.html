@@ -11,13 +11,14 @@
                     {% else %}
                         <img class="product-img" src="{% static 'images/no_posts.png' %}" alt='product image'/>
                     {% endif %}
-                <br>
+                    <br>
                     <p> Product: <span class="description">{{ product.product_name }}</span></p>
                     <p>Category: <span class="description">{{ product.category }}</span></p>
                     <p>Price:<span class="description"> {{ product.price|floatformat:2 }} lv</span></p>
                 </div>
-            {% if product.description %}
-                <div class="product-header"><p>Description:<br><span class="description"> {{ product.description }}</span></p></div>
+                {% if product.description %}
+                    <div class="product-header"><p>Description:<br><span
+                            class="description"> {{ product.description }}</span></p></div>
                 {% endif %}
                 {% if is_owner %}
                     <div class="detail-product-edit">
@@ -34,7 +35,11 @@
                             <div class="text-comments">
                                 {% for comment in product.productcomment_set.all %}
                                     {% if comment %}
-                                        <p class="user-name">{{ comment.user }}</p>
+                                        {% if comment.user %}
+                                            <p class="user-name">{{ comment.user }}</p>
+                                        {% else %}
+                                            <p class="user-name">Anonymous</p>
+                                        {% endif %}
                                         <label class="comment">{{ comment.text }}</label>
                                         <p>{{ comment.date_and_time_of_publication }}</p>
                                     {% endif %}
