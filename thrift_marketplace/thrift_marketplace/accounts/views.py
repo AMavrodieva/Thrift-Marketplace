@@ -81,11 +81,11 @@ class AppDetailsUserView(LoginRequiredMixin, views.DetailView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        products = self.object.product_set.all
         context = super().get_context_data(**kwargs)
-        context['products'] = products
+        context['products'] = self.object.product_set.all()
         context['is_owner'] = self.request.user == self.object
-        context['send_queries'] = self.object.productrequest_set.all
+        context['send_queries'] = self.object.productrequest_set.all()
+
         return context
 
 

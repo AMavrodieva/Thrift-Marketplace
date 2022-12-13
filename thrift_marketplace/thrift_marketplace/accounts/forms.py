@@ -21,6 +21,9 @@ class AppCreateUserForm(auth_forms.UserCreationForm):
     class Meta:
         model = UserModel
         fields = ('username', 'email', 'password1', 'password2')
+        field_classes = {
+            'username': auth_forms.UsernameField,
+        }
 
 
 class AppLoginForm(auth_forms.AuthenticationForm):

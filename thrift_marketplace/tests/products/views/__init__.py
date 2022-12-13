@@ -1,0 +1,1 @@
+from .details_product_test import *

@@ -33,7 +33,7 @@
                               action="{% url 'product comment' product_id=product.pk %}">
                             {{ comment_form }}
                             <div class="text-comments">
-                                {% for comment in product.productcomment_set.all %}
+                                {% for comment in product_comments%}
                                     {% if comment %}
                                         {% if comment.user %}
                                             <p class="user-name">{{ comment.user }}</p>
@@ -78,7 +78,7 @@
         </section>
         <section id="photo-details">
             <section class="photo-section">
-                {% for photo in product.photos_set.all %}
+                {% for photo in product_photos %}
                     {% if photo.photo_picture %}
                         <img class="image-product" src="{{ photo.photo_picture.url }}" alt="product_photos">
                     {% endif %}

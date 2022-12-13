@@ -81,7 +81,7 @@
     height: auto;
 }
 
-#add-photos{
+#add-photos, #delete-photos{
     width: 500px;
     height: 400px;
     margin: 20px;
@@ -89,6 +89,10 @@
     border: 3px solid #E2E8EA;
     border-radius: 70px 0 70px;
     background: rgba(6, 12, 33, 0.87);
+}
+
+#delete-photos{
+    margin-left: 20px;
 }
 
 .request-section, .rating-section{

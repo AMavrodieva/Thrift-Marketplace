@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
-DEBUG = int(os.environ.get('DEBUG'))
+DEBUG = int(os.environ.get('DEBUG', 1))
 
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
@@ -86,9 +86,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
 

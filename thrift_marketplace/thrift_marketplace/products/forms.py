@@ -50,3 +50,4 @@ class ProductPhotoAddForm(forms.ModelForm):
     class Meta:
         model = Photos
         fields = ('photo_picture',)
+

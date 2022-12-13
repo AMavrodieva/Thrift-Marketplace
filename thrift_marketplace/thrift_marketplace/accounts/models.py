@@ -1,8 +1,9 @@
 from django.contrib.auth import models as auth_models
 from django.core import validators
 from django.db import models
+from cloudinary import models as cloudinary_models
 
-from thrift_marketplace.accounts.validators import validator_only_letters, validator_max_size_image
+from thrift_marketplace.accounts.validators import validator_only_letters
 
 
 class MyAppUser(auth_models.AbstractUser):
@@ -51,12 +52,11 @@ class MyAppUser(auth_models.AbstractUser):
         verbose_name="Phone Number"
     )
 
-    profile_picture = models.ImageField(
-        upload_to=IMAGE_UPLOAD_DIR,
-        validators={
-            validator_max_size_image,
-        },
+    profile_picture = cloudinary_models.CloudinaryField(
         null=True,
         blank=True,
         verbose_name='Profile Picture',
     )
+
+    def __str__(self):
+        return self.username

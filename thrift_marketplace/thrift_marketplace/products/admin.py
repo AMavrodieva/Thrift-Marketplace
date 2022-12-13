@@ -13,12 +13,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'category', 'product_name', 'price', 'user')
+    list_display = ('pk', 'category', 'product_name', 'price', 'user', 'product_picture')
     list_filter = ('category_id', )
     ordering = ('pk', 'category')
     search_fields = ("product_name__icontains",)
     filter = ('product_name', 'category')
-
 
 
 @admin.register(Photos)
@@ -40,4 +39,3 @@ class ProductPhotosAdmin(admin.ModelAdmin):
     def username(current_photo_obj):
         current_product = current_photo_obj.product.user.username
         return current_product
-
