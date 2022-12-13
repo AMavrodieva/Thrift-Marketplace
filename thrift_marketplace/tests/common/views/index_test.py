@@ -61,7 +61,7 @@ class HomePageViewTest(TestCase):
         self.assertEqual(len(products), len(response.context['page_obj']))
         self.assertListEqual(products, list(response.context['page_obj']))
 
-    def test_home_page_view__when_7_products_page_2__expect_show_1_product(self):
+    def test_index_view__when_7_products_page_2__expect_show_1_product(self):
         user = UserModel.objects.create_user(**self.VALID_USER_DATA)
         user_1 = UserModel.objects.create_user(**self.SECOND_USER_DATA)
         product_1 = create_product(user)
